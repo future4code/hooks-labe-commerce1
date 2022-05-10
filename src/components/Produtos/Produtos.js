@@ -11,41 +11,7 @@ import Naboo from './img/naboo-royal-starship.png'
 import TantiveIV from './img/tantive-iv.png'
 import TFBattleship from './img/trade-federation-battleship.jpeg'
 
-const Container = styled.div``
-
-
-const CardProduto = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-
-`
-const ImagemProduto = styled.img`
-    width: 231px;
-    height: 220px;
-`
-
-const BotaoAdd = styled.button`
-    margin: 10px;
-`
-
-class Card extends React.Component{
-    render(){
-        return(
-            <CardProduto>
-                <ImagemProduto src={this.props.imagem} alt={this.props.acessibilidade}/>
-                <h4>{this.props.nomeProduto}</h4>
-                <p>{this.props.preco} Créditos</p>
-                <BotaoAdd>Adicionar ao carrinho</BotaoAdd>
-            </CardProduto>
-        )
-    }
-}
-
-export default Card;
-
+ const Container= styled.div`
     width: 55%;
     height: 600px;
     padding: 0 10px;`
@@ -57,30 +23,29 @@ const DisplayProdutos = styled.div`
     row-gap: 10px;
     column-gap: 10px;
 `
+const Ordenacao = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
 
 
 class Produtos extends React.Component{
 
-    state = {
-        ordem: 'maior',
-    }
-
-    onChangeOrdem = (event) => {
-        this.setState({ordem: event.target.value})
-    }
-
     render(){
         return(
-            <>
             <Container>
-                <div>
-                    <h1>PRODUTOS</h1>
-                    <label>Ordenar: </label>
-                    <select value={this.state.ordem} onChange={this.onChangeOrdem}>
-                        <option value="maior">Maior</option>
-                        <option value="menor">Menor</option>
-                    </select>
-                </div>
+                <Ordenacao>
+                    <h2>PRODUTOS</h2>
+                    <div>
+                        <label>Ordenar: </label>
+                        <select>
+                            <option value="maior">Maior</option>
+                            <option value="menor">Menor</option>
+                        </select>
+                    </div>
+                </Ordenacao>
 
                 <DisplayProdutos>
                     <CardProduto
@@ -126,10 +91,6 @@ class Produtos extends React.Component{
                     />
                 </DisplayProdutos>
             </Container>
-            <Borda>
-                <h1>PRODUTOS</h1>
-            </Borda>
-            </>
         );
     }
 }
