@@ -31,7 +31,6 @@ const Ordenacao = styled.div`
 
 class Produtos extends React.Component{
 
-
     render(){
         return(
             <Container>
