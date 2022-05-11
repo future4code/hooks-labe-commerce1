@@ -81,7 +81,9 @@ class App extends React.Component {
     this.setState({ textFiltro: event.target.value });
   };
 
-
+  AdicionarProdutoCarrinho = () =>{
+    this.setState({quantidade: this.state.quantidade + 1});
+  }
   // onAddNave = (idNave) => {
   //   const addNave = this.state.itemCarrinho.find(naves => idNave === naves.id)
 
@@ -137,6 +139,7 @@ class App extends React.Component {
           nome  = {this.state.naves[0].nomeProduto}
           valor = {this.state.naves[0].preco}
           quantidade = {this.state.quantidade}
+          adicionarProduto = {this.AdicionarProdutoCarrinho}
         />
       </Pagina>
     );

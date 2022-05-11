@@ -10,11 +10,23 @@ const BlocoCarrinho = styled.div`
 
 class Carrinho extends React.Component {
   mostrarProduto = () =>{
+    if(this.props.quantidade > 0){
+     return(
+       <p>
+         <span>   {this.props.quantidade}x  </span>
+         <span>   {this.props.nome}         </span>
+         <span>   {this.props.valor}        </span>
+         <button >   REMOVER      </button>
+       </p>
+     )
+    }
+  }
+  CalcularValorPagar = () => {
+    let valorTotal = this.props.quantidade * this.props.valor
     return(
       <p>
-        <span>  {this.props.quantidade}x  </span>
-        <span>  {this.props.nome}         </span>
-        <span>  {this.props.valor}        </span>
+        <hr/>
+        <p>Valor total: R${valorTotal},00</p>
       </p>
     )
   }
@@ -23,6 +35,8 @@ class Carrinho extends React.Component {
       <BlocoCarrinho>
         <h3>Carrinho: </h3>
         <div>{this.mostrarProduto()}</div>
+        {this.CalcularValorPagar()}
+        <button onClick = {this.props.adicionarProduto}>Adicionar</button>
       </BlocoCarrinho>
     );
   }
