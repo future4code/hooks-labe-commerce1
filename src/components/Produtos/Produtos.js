@@ -1,7 +1,5 @@
 import React from "react";
 
-import styled from "styled-components";
-
 import styled from 'styled-components'
 import CardProduto from './CardProduto'
 import DeathStar from './img/death-star.jpg'

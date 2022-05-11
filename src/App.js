@@ -18,55 +18,57 @@ const Pagina = styled.div`
   margin: 15px 20px;
 `;
 
-const naves = [
-  {
-  imagem: {DeathStar},
-  acessibilidade: 'Death Star',
-  nomeProduto:'Death Star',
-  preco: 1370000
-  },
-{
-  imagem: {MFalcon},
-  acessibilidade: 'Millenium Falcon',
-  nomeProduto: 'Millenium Falcon',
-  preco: 165000
-},
-{
-  imagem: {Executor},
-  acessibilidade: 'Executor',
-  nomeProduto: 'Executor',
-  preco: 1118000
-
-},
-{
-  imagem: Naboo,
-  acessibilidade: 'Naboo Royal Starship',
-  nomeProduto: 'Naboo Royal Starship',
-  preco: 67000
-
-},
-{
-  imagem: TFBattleship,
-  acessibilidade: 'Trade Federation Battleship',
-  nomeProduto: 'Trade Federation Battleship',
-  preco: 658000
-
-},
-{
-  imagem: TantiveIV,
-  acessibilidade: 'Tantive IV',
-  nomeProduto: 'Tantive IV',
-  preco: 144000  
-}
-];
 
 class App extends React.Component {
-  state = {
+  state ={
+   naves : [
+    {
+    imagem: {DeathStar},
+    acessibilidade: 'Death Star',
+    nomeProduto:'Death Star',
+    preco: 1370000
+    },
+    {
+    imagem: {MFalcon},
+    acessibilidade: 'Millenium Falcon',
+    nomeProduto: 'Millenium Falcon',
+    preco: 165000
+    },
+    {
+    imagem: {Executor},
+    acessibilidade: 'Executor',
+    nomeProduto: 'Executor',
+    preco: 1118000
+  
+    },
+    {
+    imagem: Naboo,
+    acessibilidade: 'Naboo Royal Starship',
+    nomeProduto: 'Naboo Royal Starship',
+    preco: 67000
+  
+    },
+    {
+    imagem: TFBattleship,
+    acessibilidade: 'Trade Federation Battleship',
+    nomeProduto: 'Trade Federation Battleship',
+    preco: 658000
+  
+    },
+    {
+    imagem: TantiveIV,
+    acessibilidade: 'Tantive IV',
+    nomeProduto: 'Tantive IV',
+    preco: 144000  
+   }
+  ],
     numberFiltroMinimo: "",
     numberFiltroMaximo: "",
     textFiltro: "",
     itemCarrinho: [],
+    quantidade: 0
   };
+
 
   onChangeNumberMin = (event) => {
     this.setState({ numberFiltroMinimo: event.target.value });
@@ -131,7 +133,11 @@ class App extends React.Component {
           onChangeText={this.onChangeText}
         />
         <Produtos />
-        <Carrinho />
+        <Carrinho 
+          nome  = {this.state.naves[0].nomeProduto}
+          valor = {this.state.naves[0].preco}
+          quantidade = {this.state.quantidade}
+        />
       </Pagina>
     );
   }
