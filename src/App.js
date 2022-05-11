@@ -18,55 +18,67 @@ const Pagina = styled.div`
   margin: 15px 20px;
 `;
 
+const naves = [
+  {
+  id: 1,
+  imagem: {DeathStar},
+  acessibilidade: 'Death Star',
+  nomeProduto:'Death Star',
+  preco: 1370000,
+  quantidade: 0
+  },
+  {
+  id: 2,
+  imagem: {MFalcon},
+  acessibilidade: 'Millenium Falcon',
+  nomeProduto: 'Millenium Falcon',
+  preco: 165000,
+  quantidade: 0
+
+  },
+  {
+  id: 3,
+  imagem: {Executor},
+  acessibilidade: 'Executor',
+  nomeProduto: 'Executor',
+  preco: 1118000,
+  quantidade: 0
+
+  },
+  {
+  id: 4,
+  imagem: Naboo,
+  acessibilidade: 'Naboo Royal Starship',
+  nomeProduto: 'Naboo Royal Starship',
+  preco: 67000,
+  quantidade: 2
+  },
+  {
+  id: 5,
+  imagem: TFBattleship,
+  acessibilidade: 'Trade Federation Battleship',
+  nomeProduto: 'Trade Federation Battleship',
+  preco: 658000,
+  quantidade: 0
+
+  },
+  {
+  id: 6,
+  imagem: TantiveIV,
+  acessibilidade: 'Tantive IV',
+  nomeProduto: 'Tantive IV',
+  preco: 144000,  
+  quantidade: 0
+ }
+]
 
 class App extends React.Component {
   state ={
-   naves : [
-    {
-    imagem: {DeathStar},
-    acessibilidade: 'Death Star',
-    nomeProduto:'Death Star',
-    preco: 1370000
-    },
-    {
-    imagem: {MFalcon},
-    acessibilidade: 'Millenium Falcon',
-    nomeProduto: 'Millenium Falcon',
-    preco: 165000
-    },
-    {
-    imagem: {Executor},
-    acessibilidade: 'Executor',
-    nomeProduto: 'Executor',
-    preco: 1118000
-  
-    },
-    {
-    imagem: Naboo,
-    acessibilidade: 'Naboo Royal Starship',
-    nomeProduto: 'Naboo Royal Starship',
-    preco: 67000
-  
-    },
-    {
-    imagem: TFBattleship,
-    acessibilidade: 'Trade Federation Battleship',
-    nomeProduto: 'Trade Federation Battleship',
-    preco: 658000
-  
-    },
-    {
-    imagem: TantiveIV,
-    acessibilidade: 'Tantive IV',
-    nomeProduto: 'Tantive IV',
-    preco: 144000  
-   }
-  ],
+    carrinho: [],
     numberFiltroMinimo: "",
     numberFiltroMaximo: "",
     textFiltro: "",
     itemCarrinho: [],
-    quantidade: 0
   };
 
 
@@ -81,14 +93,60 @@ class App extends React.Component {
     this.setState({ textFiltro: event.target.value });
   };
 
-  adicionarProdutoCarrinho = () =>{
-    this.setState({quantidade: this.state.quantidade + 1});
+  adicionarProdutoCarrinho = (idProduto) =>{
+    const adicionarMaisProduto = this.state.carrinho.find((item) => idProduto === naves.id);
+
+    if(adicionarMaisProduto){
+      const produtoCarrinho = this.state.carrinho.map((item) => {
+        if(idProduto === naves.id){
+          return{
+            ...naves,
+            quantidade: naves.quantidade + 1
+          }
+        }
+        return naves;
+      });
+      this.setState({carrinho: produtoCarrinho})
+    }
+    else{
+      const adicionarAoCarrinho = this.state.carrinho.find((item) => idProduto === naves.id);
+
+      const novoProduto = [
+        ... this.state.carrinho,
+        {...adicionarAoCarrinho, quantidade: 1}
+      ]
+      this.setState({carrinho: novoProduto})
+    }
   }
   
-  removerProduto = () => {
+
+  removerProduto = (idProduto) => {
+    const adicionarMaisProduto = this.state.carrinho.find((item) => idProduto === naves.id);
+
+    if(adicionarMaisProduto){
+      const produtoCarrinho = this.state.carrinho.map((item) => {
+        if(idProduto === naves.id){
+          return{
+            ...naves,
+            quantidade: naves.quantidade - 1
+          }
+        }
+        return naves;
+      });
+      this.setState({carrinho: produtoCarrinho})
+    }
     if(this.state.quantidade > 0){
 
       this.setState({quantidade: this.state.quantidade - 1}); 
+    }
+    else{
+      const adicionarAoCarrinho = this.state.carrinho.find((item) => idProduto === naves.id);
+
+      const novoProduto = [
+        ... this.state.carrinho,
+        {...adicionarAoCarrinho, quantidade: 1}
+      ]
+      this.setState({carrinho: adicionarAoCarrinho})
     }
   }
   // onAddNave = (idNave) => {
@@ -141,13 +199,13 @@ class App extends React.Component {
           onChangeNumberMax={this.onChangeNumberMax}
           onChangeText={this.onChangeText}
         />
-        <Produtos />
-        <Carrinho 
-          nome  = {this.state.naves[0].nomeProduto}
-          valor = {this.state.naves[0].preco}
-          quantidade = {this.state.quantidade}
+        <Produtos 
           adicionarProduto = {this.adicionarProdutoCarrinho}
-          remover = {this.removerProduto}
+        />
+        <Carrinho 
+          produtos = {this.state.carrinho}
+          adicionaProduto = {this.adicionarProdutoCarrinho}
+          removeProduto = {this.removerProduto}
         />
       </Pagina>
     );

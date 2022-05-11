@@ -12,31 +12,40 @@ class Carrinho extends React.Component {
   mostrarProduto = () =>{
     if(this.props.quantidade > 0){
      return(
-       <p>
+      <>
          <span>   {this.props.quantidade}x  </span>
          <span>   {this.props.nome}         </span>
          <span>   {this.props.valor}        </span>
-         <button onClick={this.props.remover}>   REMOVER      </button>
-       </p>
+         <button onClick = {this.props.remover}> REMOVER </button>
+      </>
      )
     }
   }
   CalcularValorPagar = () => {
     let valorTotal = this.props.quantidade * this.props.valor
     return(
-      <p>
+      <>
         <hr/>
         <p>Valor total: R${valorTotal},00</p>
-      </p>
+      </>
     )
   }
   render() {
     return (
       <BlocoCarrinho>
-        <h3>Carrinho: </h3>
-        <div>{this.mostrarProduto()}</div>
-        {this.CalcularValorPagar()}
-        <button onClick = {this.props.adicionarProduto}>Adicionar</button>
+        <h3>CARRINHO: </h3>
+        {this.props.produtos.map((item) => {
+          return(
+            <>
+              <div>{item.nomeProduto}</div>
+              <div>{item.preco}</div>
+              <button onClick = {this.props.removeProduto(item.id)}>Remover</button>
+            </>
+          )
+        })}
+        {/* <div>{this.mostrarProduto()}</div>
+        <div>{this.CalcularValorPagar()}</div>
+        <button onClick = {this.props.adicionarProduto}>Adicionar</button> */}
       </BlocoCarrinho>
     );
   }
