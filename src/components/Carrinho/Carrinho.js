@@ -16,7 +16,7 @@ class Carrinho extends React.Component {
          <span>   {this.props.quantidade}x  </span>
          <span>   {this.props.nome}         </span>
          <span>   {this.props.valor}        </span>
-         <button >   REMOVER      </button>
+         <button onClick={this.props.remover}>   REMOVER      </button>
        </p>
      )
     }
