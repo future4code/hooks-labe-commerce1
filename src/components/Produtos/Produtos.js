@@ -1,6 +1,4 @@
 import React from "react";
-
-
 import styled from 'styled-components'
 import CardProduto from './CardProduto'
 import DeathStar from './img/death-star.jpg'
@@ -45,16 +43,39 @@ class Produtos extends React.Component{
                         </select>
                     </div>
                 </Ordenacao>
-
                 <DisplayProdutos>
-                    <CardProduto
-                        imagem={DeathStar}
-                        acessibilidade={'Death Star'}
-                        nomeProduto={'Death Star'}
-                        preco={1370000}
-                    />
+                    {this.props.produtos.map((produto) => {
+                        return(
+                            <div key={produto.id}>
+                                <CardProduto produtos = {produto} clicar = {this.props.clicar}/>
+                                {console.log(produto)}
+                            </div>
+                        )
+                    })}
+                </DisplayProdutos>
 
+                {/* <DisplayProdutos>
                     <CardProduto
+                        produtos = {this.props.produtos[0]}
+                        adicionarProduto = {this.props.adicionarProduto}
+                    />
+                    <CardProduto
+                        produtos = {this.props.produtos[1]}
+                    />
+                    <CardProduto
+                        produtos = {this.props.produtos[2]}
+                    />
+                    <CardProduto
+                        produtos = {this.props.produtos[3]}
+                    />
+                    <CardProduto
+                        produtos = {this.props.produtos[4]}
+                    />
+                    <CardProduto
+                        produtos = {this.props.produtos[5]}
+                    /> */}
+
+                    {/* <CardProduto
                         imagem={MFalcon}
                         acessibilidade={'Millenium Falcon'}
                         nomeProduto={'Millenium Falcon'}
@@ -87,8 +108,8 @@ class Produtos extends React.Component{
                         acessibilidade={'Tantive IV'}
                         nomeProduto={'Tantive IV'}
                         preco={144000}
-                    />
-                </DisplayProdutos>
+                    /> */}
+                {/* </DisplayProdutos> */}
             </Container>
         );
     }

@@ -2,7 +2,7 @@ import React from "react";
 import Filtros from "./components/Filtros/Filtros";
 import Produtos from "./components/Produtos/Produtos";
 import Carrinho from "./components/Carrinho/Carrinho";
-import CardProduto from "./components/Produtos/CardProduto";
+// import CardProduto from "./components/Produtos/CardProduto";
 import styled from "styled-components";
 import DeathStar from './components/Produtos/img/death-star.jpg'
 import Executor from './components/Produtos/img/executor.jpg'
@@ -21,7 +21,7 @@ const Pagina = styled.div`
 const naves = [
   {
   id: 1,
-  imagem: {DeathStar},
+  imagem: DeathStar,
   acessibilidade: 'Death Star',
   nomeProduto:'Death Star',
   preco: 1370000,
@@ -29,7 +29,7 @@ const naves = [
   },
   {
   id: 2,
-  imagem: {MFalcon},
+  imagem: MFalcon,
   acessibilidade: 'Millenium Falcon',
   nomeProduto: 'Millenium Falcon',
   preco: 165000,
@@ -38,7 +38,7 @@ const naves = [
   },
   {
   id: 3,
-  imagem: {Executor},
+  imagem: Executor,
   acessibilidade: 'Executor',
   nomeProduto: 'Executor',
   preco: 1118000,
@@ -75,6 +75,7 @@ const naves = [
 class App extends React.Component {
   state ={
     carrinho: [],
+    // quantidade: 0,
     numberFiltroMinimo: "",
     numberFiltroMaximo: "",
     textFiltro: "",
@@ -93,101 +94,44 @@ class App extends React.Component {
     this.setState({ textFiltro: event.target.value });
   };
 
-  adicionarProdutoCarrinho = (idProduto) =>{
-    const adicionarMaisProduto = this.state.carrinho.find((item) => idProduto === naves.id);
-
-    if(adicionarMaisProduto){
-      const produtoCarrinho = this.state.carrinho.map((item) => {
-        if(idProduto === naves.id){
-          return{
-            ...naves,
-            quantidade: naves.quantidade + 1
-          }
-        }
-        return naves;
-      });
-      this.setState({carrinho: produtoCarrinho})
-    }
-    else{
-      const adicionarAoCarrinho = this.state.carrinho.find((item) => idProduto === naves.id);
-
-      const novoProduto = [
-        ... this.state.carrinho,
-        {...adicionarAoCarrinho, quantidade: 1}
-      ]
-      this.setState({carrinho: novoProduto})
-    }
-  }
+  adicionarProdutoCarrinho = (idProduto) =>{ 
+      const adiciocionarProduto = this.state.carrinho.find(produto => idProduto === produto.id)
   
-
-  removerProduto = (idProduto) => {
-    const adicionarMaisProduto = this.state.carrinho.find((item) => idProduto === naves.id);
-
-    if(adicionarMaisProduto){
-      const produtoCarrinho = this.state.carrinho.map((item) => {
-        if(idProduto === naves.id){
-          return{
-            ...naves,
-            quantidade: naves.quantidade - 1
+      if(adiciocionarProduto) {
+        const itemCarrinho = this.state.carrinho.map(produto => {
+          if(idProduto === produto.id) {
+            return {
+              ...produto,
+              quantidade: produto.quantidade + 1
+            }
           }
-        }
-        return naves;
-      });
-      this.setState({carrinho: produtoCarrinho})
+  
+          return produto
+        })
+  
+        this.setState({carrinho: itemCarrinho})
+      } else {
+        const produtoToAdd = naves.find(produto => idProduto === produto.id)
+  
+        const itemCarrinho = [...this.state.carrinho, {...produtoToAdd, quantidade: 1}]
+  
+        this.setState({carrinho: itemCarrinho})
+      }
     }
-    if(this.state.quantidade > 0){
-
-      this.setState({quantidade: this.state.quantidade - 1}); 
-    }
-    else{
-      const adicionarAoCarrinho = this.state.carrinho.find((item) => idProduto === naves.id);
-
-      const novoProduto = [
-        ... this.state.carrinho,
-        {...adicionarAoCarrinho, quantidade: 1}
-      ]
-      this.setState({carrinho: adicionarAoCarrinho})
-    }
-  }
-  // onAddNave = (idNave) => {
-  //   const addNave = this.state.itemCarrinho.find(naves => idNave === naves.id)
-
-  //   if(addNave) {
-  //     const newitemCarrinho = this.state.itemCarrinho.map(naves => {
-  //       if(idNave === naves.id) {
-  //         return {
-  //           ...naves,
-  //           quantidade: naves.quantidade + 1
-  //         }
-  //       }
-
-  //       return naves
-  //     })
-
-  //     this.setState({itemCarrinho: newitemCarrinho})
-  //   } else {
-  //     const navesToAdd = naves.find(naves => idNave === naves.id)
-
-  //     const newitemCarrinho = [...this.state.itemCarrinho, {...navesToAdd, quantidade: 1}]
-
-  //     this.setState({itemCarrinho: newitemCarrinho})
-  //   }
-  // }
-
-  // onRemoveNavesDoCarrinho = (idNave) => {
-  //   const newitemCarrinho = this.state.itemCarrinho.map((naves) => {
-  //     if(naves.id === idNave) {
-  //       return {
-  //         ...naves,
-  //         quantidade: naves.quantidade - 1
-  //       }
-  //     }
-  //     return naves
-  //   }).filter((naves) => naves.quantidade > 0)
-
-  //   this.setState({itemCarrinho: newitemCarrinho})
-  // }
-
+    removerProduto = (idProduto) => {
+        const novoItemCarrinho = this.state.carrinho.map((produto) => {
+          if(produto.id === idProduto) {
+            return {
+              ...produto,
+              quantidade: produto.quantidade - 1
+            }
+          }
+          return produto
+        }).filter((produto) => produto.quantidade > 0)
+    
+        this.setState({carrinho: novoItemCarrinho})
+      }
+  
   render() {
     return (
       <Pagina>
@@ -200,10 +144,13 @@ class App extends React.Component {
           onChangeText={this.onChangeText}
         />
         <Produtos 
-          adicionarProduto = {this.adicionarProdutoCarrinho}
+          produtos = {naves}
+          clicar = {this.adicionarProdutoCarrinho}
         />
         <Carrinho 
-          produtos = {this.state.carrinho}
+          produto = {naves}
+          quantidade = {this.state.quantidade}
+          carrinho = {this.state.carrinho}
           adicionaProduto = {this.adicionarProdutoCarrinho}
           removeProduto = {this.removerProduto}
         />
