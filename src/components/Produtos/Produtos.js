@@ -30,7 +30,7 @@ const Ordenacao = styled.div`
 
 class Produtos extends React.Component{
 
-    render(){
+    render(){        
         return(
             <Container>
                 <Ordenacao>
@@ -44,7 +44,12 @@ class Produtos extends React.Component{
                     </div>
                 </Ordenacao>
                 <DisplayProdutos>
-                    {this.props.produtos.map((produto) => {
+
+                    {/* estou mexendo no filter aqui rsrsrs WF */}
+                    {this.props.produtos
+                    // .filter(obj =>{                       
+                    // })
+                    .map((produto) => {
                         return(
                             <div key={produto.id}>
                                 <CardProduto produtos = {produto} clicar = {this.props.clicar}/>

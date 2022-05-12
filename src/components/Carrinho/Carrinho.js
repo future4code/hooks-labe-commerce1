@@ -33,9 +33,9 @@ class Carrinho extends React.Component {
     return (
       <BlocoCarrinho>
         <h3>CARRINHO: </h3>
-        {this.props.carrinho.map((produto, index) => {
+        {this.props.produtos.map((produto) => {
           return(
-            <div  key = {index}>
+            <div  key = {produto.id}>
               <span>{produto.quantidade}</span>
               <span>{produto.nomeProduto}</span>
                <button onClick = {() => this.props.removeProduto(produto.id)}>Remover</button> 
