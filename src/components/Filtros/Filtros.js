@@ -7,23 +7,23 @@ const Borda = styled.div`
   height: 600px;
   padding: 0 10px;
 `;
-const Titulo = styled.h1`
+const Titulo = styled.h3`
   color: red;
 `;
 
 class Filtros extends React.Component {
-  render() {
+  render() {    
     return (
       <Borda>
-        <h3>FILTRO</h3>
+        <Titulo>FILTRO</Titulo>
         <div>
           Valor mínimo
           <div>
             <input
               placeholder="0"
               type="number"
-              onChange={this.props.onChangeNumberMin}
-              value={this.props.numberFiltroMinimo}
+              onChange={this.props.updateMinPrice}
+              value={this.props.valorMinimo}
             ></input>
           </div>
         </div>
@@ -33,8 +33,8 @@ class Filtros extends React.Component {
             <input
               placeholder="1500000"
               type="number"
-              onChange={this.props.onChangeNumberMax}
-              value={this.props.numberFiltroMaximo}
+              onChange={this.props.updateMaxPrice}
+              value={this.props.valorMaximo}
             ></input>
           </div>
         </div>
@@ -44,12 +44,13 @@ class Filtros extends React.Component {
             <input
               placeholder="Nave star wars"
               type="text"
-              onChange={this.props.onChangeText}
-              value={this.props.textFiltro}
-            ></input>
+              onChange={this.props.updateQuery}
+              value={this.props.textQuery}
+              ></input>                        
           </div>
-        </div>
+        </div>        
       </Borda>
+      
     );
   }
 }
