@@ -19,12 +19,14 @@ const BotaoAdd = styled.button`
 
 class Card extends React.Component{
     render(){
+        const porcaria = this.props.produtos;
         return(
             <CardProduto>
-                <ImagemProduto src={this.props.imagem} alt={this.props.acessibilidade}/>
-                <h4>{this.props.nomeProduto}</h4>
-                <p>{this.props.preco} Créditos</p>
-                <BotaoAdd>Adicionar ao carrinho</BotaoAdd>
+                <ImagemProduto src={porcaria.imagem} alt={porcaria.acessibilidade}/>
+                <h4>{porcaria.nomeProduto}</h4>
+                <p>{porcaria.preco} Créditos</p>
+                {console.log(porcaria.id)}
+                <BotaoAdd onClick={() => this.props.clicar(porcaria.id)}>Adicionar ao carrinho</BotaoAdd>
             </CardProduto>
         )
     }

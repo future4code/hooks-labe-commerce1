@@ -2,7 +2,7 @@ import React from "react";
 import Filtros from "./components/Filtros/Filtros";
 import Produtos from "./components/Produtos/Produtos";
 import Carrinho from "./components/Carrinho/Carrinho";
-import CardProduto from "./components/Produtos/CardProduto";
+// import CardProduto from "./components/Produtos/CardProduto";
 import styled from "styled-components";
 import DeathStar from './components/Produtos/img/death-star.jpg'
 import Executor from './components/Produtos/img/executor.jpg'
@@ -20,53 +20,68 @@ const Pagina = styled.div`
 
 const naves = [
   {
-  imagem: {DeathStar},
+  id: 1,
+  imagem: DeathStar,
   acessibilidade: 'Death Star',
   nomeProduto:'Death Star',
-  preco: 1370000
+  preco: 1370000,
+  quantidade: 0
   },
-{
-  imagem: {MFalcon},
+  {
+  id: 2,
+  imagem: MFalcon,
   acessibilidade: 'Millenium Falcon',
   nomeProduto: 'Millenium Falcon',
-  preco: 165000
-},
-{
-  imagem: {Executor},
+  preco: 165000,
+  quantidade: 0
+
+  },
+  {
+  id: 3,
+  imagem: Executor,
   acessibilidade: 'Executor',
   nomeProduto: 'Executor',
-  preco: 1118000
+  preco: 1118000,
+  quantidade: 0
 
-},
-{
+  },
+  {
+  id: 4,
   imagem: Naboo,
   acessibilidade: 'Naboo Royal Starship',
   nomeProduto: 'Naboo Royal Starship',
-  preco: 67000
-
-},
-{
+  preco: 67000,
+  quantidade: 2
+  },
+  {
+  id: 5,
   imagem: TFBattleship,
   acessibilidade: 'Trade Federation Battleship',
   nomeProduto: 'Trade Federation Battleship',
-  preco: 658000
+  preco: 658000,
+  quantidade: 0
 
-},
-{
+  },
+  {
+  id: 6,
   imagem: TantiveIV,
   acessibilidade: 'Tantive IV',
   nomeProduto: 'Tantive IV',
-  preco: 144000  
-}
-];
+  preco: 144000,  
+  quantidade: 0
+ }
+]
 
 class App extends React.Component {
-  state = {
+  state ={
+    carrinho: [],
+    // quantidade: 0,
     numberFiltroMinimo: "",
     numberFiltroMaximo: "",
     textFiltro: "",
     itemCarrinho: [],
   };
+
 
   onChangeNumberMin = (event) => {
     this.setState({ numberFiltroMinimo: event.target.value });
@@ -79,46 +94,44 @@ class App extends React.Component {
     this.setState({ textFiltro: event.target.value });
   };
 
-
-  // onAddNave = (idNave) => {
-  //   const addNave = this.state.itemCarrinho.find(naves => idNave === naves.id)
-
-  //   if(addNave) {
-  //     const newitemCarrinho = this.state.itemCarrinho.map(naves => {
-  //       if(idNave === naves.id) {
-  //         return {
-  //           ...naves,
-  //           quantidade: naves.quantidade + 1
-  //         }
-  //       }
-
-  //       return naves
-  //     })
-
-  //     this.setState({itemCarrinho: newitemCarrinho})
-  //   } else {
-  //     const navesToAdd = naves.find(naves => idNave === naves.id)
-
-  //     const newitemCarrinho = [...this.state.itemCarrinho, {...navesToAdd, quantidade: 1}]
-
-  //     this.setState({itemCarrinho: newitemCarrinho})
-  //   }
-  // }
-
-  // onRemoveNavesDoCarrinho = (idNave) => {
-  //   const newitemCarrinho = this.state.itemCarrinho.map((naves) => {
-  //     if(naves.id === idNave) {
-  //       return {
-  //         ...naves,
-  //         quantidade: naves.quantidade - 1
-  //       }
-  //     }
-  //     return naves
-  //   }).filter((naves) => naves.quantidade > 0)
-
-  //   this.setState({itemCarrinho: newitemCarrinho})
-  // }
-
+  adicionarProdutoCarrinho = (idProduto) =>{ 
+      const adiciocionarProduto = this.state.carrinho.find(produto => idProduto === produto.id)
+  
+      if(adiciocionarProduto) {
+        const itemCarrinho = this.state.carrinho.map(produto => {
+          if(idProduto === produto.id) {
+            return {
+              ...produto,
+              quantidade: produto.quantidade + 1
+            }
+          }
+  
+          return produto
+        })
+  
+        this.setState({carrinho: itemCarrinho})
+      } else {
+        const produtoToAdd = naves.find(produto => idProduto === produto.id)
+  
+        const itemCarrinho = [...this.state.carrinho, {...produtoToAdd, quantidade: 1}]
+  
+        this.setState({carrinho: itemCarrinho})
+      }
+    }
+    removerProduto = (idProduto) => {
+        const novoItemCarrinho = this.state.carrinho.map((produto) => {
+          if(produto.id === idProduto) {
+            return {
+              ...produto,
+              quantidade: produto.quantidade - 1
+            }
+          }
+          return produto
+        }).filter((produto) => produto.quantidade > 0)
+    
+        this.setState({carrinho: novoItemCarrinho})
+      }
+  
   render() {
     return (
       <Pagina>
@@ -130,8 +143,17 @@ class App extends React.Component {
           onChangeNumberMax={this.onChangeNumberMax}
           onChangeText={this.onChangeText}
         />
-        <Produtos />
-        <Carrinho />
+        <Produtos 
+          produtos = {naves}
+          clicar = {this.adicionarProdutoCarrinho}
+        />
+        <Carrinho 
+          produto = {naves}
+          quantidade = {this.state.quantidade}
+          carrinho = {this.state.carrinho}
+          adicionaProduto = {this.adicionarProdutoCarrinho}
+          removeProduto = {this.removerProduto}
+        />
       </Pagina>
     );
   }
