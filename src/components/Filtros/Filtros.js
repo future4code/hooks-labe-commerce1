@@ -20,7 +20,7 @@ class Filtros extends React.Component {
           Valor mínimo
           <div>
             <input
-              placeholder="0"
+              placeholder="67000"
               type="number"
               onChange={this.props.updateMinPrice}
               value={this.props.valorMinimo}
@@ -31,7 +31,7 @@ class Filtros extends React.Component {
           Valor máximo
           <div>
             <input
-              placeholder="1500000"
+              placeholder="1370000"
               type="number"
               onChange={this.props.updateMaxPrice}
               value={this.props.valorMaximo}
@@ -42,7 +42,7 @@ class Filtros extends React.Component {
           Busca por nome
           <div>
             <input
-              placeholder="Nave star wars"
+              placeholder="Death Star"
               type="text"
               onChange={this.props.updateQuery}
               value={this.props.textQuery}

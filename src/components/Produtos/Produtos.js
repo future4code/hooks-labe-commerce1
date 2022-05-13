@@ -28,12 +28,14 @@ class Produtos extends React.Component{
         return(
             <Container>
                 <Ordenacao>
-                    <h2>PRODUTOS</h2>
+                    <h2>PRODUTOS</h2>                    
                     <div>
-                        <label>Ordenar: </label>
-                        <select>
-                            <option value="maior">Maior</option>
-                            <option value="menor">Menor</option>
+                        <label for="sort">Ordenar: </label>
+                        <select name="sort"
+                        value={this.props.sortingParameter}
+                        onChange={this.props.updateSortingParameter}>                        
+                            <option value="precoAlto">Maior</option>
+                            <option value="precoBaixo">Menor</option>
                         </select>
                     </div>
                 </Ordenacao>
@@ -41,8 +43,23 @@ class Produtos extends React.Component{
 
                     {/* estou mexendo no filter aqui rsrsrs WF */}
                     {this.props.produtos
-                    // .filter(obj =>{                       
-                    // })
+                    .sort((obj1,obj2)=>{
+                        switch (this.props.sortingParameter) {
+                            case "precoAlto":
+                                return obj2.preco - obj1.preco                                                     
+                            case "precoBaixo":
+                                return obj1.preco - obj2.preco            
+                        }                       
+                    })
+                    .filter(obj =>{  
+                        return obj.nomeProduto.toLowerCase().includes(this.props.textoQuery.toLowerCase())                              
+                    })
+                    .filter(val=>{
+                        return this.props.valorMinimo === "" || val.preco >= this.props.valorMinimo
+                    })
+                    .filter(val=>{
+                        return this.props.valorMaximo === "" || val.preco <= this.props.valorMaximo
+                    })
                     .map((produto) => {
                         return(
                             <div key={produto.id}>

@@ -26,6 +26,7 @@ class App extends React.Component {
     valorMinimo: "",
     valorMaximo: "",
     textoQuery: "",
+    sortingParameter:"precoAlto",
     naves: [
       {
         id: 1,
@@ -34,6 +35,7 @@ class App extends React.Component {
         nomeProduto: "Death Star",
         preco: 30,
         quantidade: 0,
+        descrição: "Melhor nave"
       },
       {
         id: 2,
@@ -42,6 +44,7 @@ class App extends React.Component {
         nomeProduto: "Millenium Falcon",
         preco: 20,
         quantidade: 0,
+        descrição: "Melhor nave 2"
       },
       {
         id: 3,
@@ -50,6 +53,7 @@ class App extends React.Component {
         nomeProduto: "Executor",
         preco: 10,
         quantidade: 0,
+        descrição: "Nave mais rápida"
       },
       {
         id: 4,
@@ -58,6 +62,7 @@ class App extends React.Component {
         nomeProduto: "Naboo Royal Starship",
         preco: 67000,
         quantidade: 0,
+        descrição: "Nave mais rápida 2"
       },
       {
         id: 5,
@@ -66,6 +71,7 @@ class App extends React.Component {
         nomeProduto: "Trade Federation Battleship",
         preco: 658000,
         quantidade: 0,
+        descrição: "Muito militar"
       },
       {
         id: 6,
@@ -74,6 +80,7 @@ class App extends React.Component {
         nomeProduto: "Tantive IV",
         preco: 144000,
         quantidade: 0,
+        descrição: "Velocidade incrivel"
       },
     ]
   };
@@ -89,24 +96,28 @@ class App extends React.Component {
   updateQuery = (event) => {
     this.setState({ textoQuery: event.target.value });
   };
-
+  
+  updateSortingParameter = (event) => {
+    this.setState({ sortingParameter: event.target.value });
+  };
+ 
   adicionarProdutoCarrinho = (idProduto) => {
-    // const valorCarrinho = this.state.carrinho;
-
     const adiciocionarProduto = this.state.carrinho.find(
-      (produto) => idProduto === produto.id );
-      
-      if (adiciocionarProduto) {
-        const itemCarrinho =  this.state.carrinho.map((produto) => {
-          if (idProduto === produto.id) {
-          console.log("Entrou na função")
+      (produto) => idProduto === produto.id
+    );
+
+    if (adiciocionarProduto) {
+      const itemCarrinho = this.state.carrinho.map((produto) => {
+        if (idProduto === produto.id) {
           return {
             ...produto,
             quantidade: produto.quantidade + 1,
           };
         }
-        return  produto;
+
+        return produto;
       });
+
       this.setState({ carrinho: itemCarrinho });
     } else {
       const produtoToAdd = this.state.naves.find((produto) => idProduto === produto.id);
@@ -119,7 +130,7 @@ class App extends React.Component {
       this.setState({ carrinho: itemCarrinho });
     }
   };
-
+  
   removerProduto = (idProduto) => {
     console.log(idProduto)
     const novoItemCarrinho = this.state.carrinho.map((produto) => {
@@ -140,12 +151,6 @@ class App extends React.Component {
   render() {
     return (
       <Pagina>
-        <div>{this.state.valorMinimo}</div>
-        <div></div>
-        <div>{this.state.valorMaximo}</div>
-        <div></div>
-        <div>{this.state.textoQuery}</div>  
-
         <Filtros
           valorMinimo={this.state.valorMinimo}
           valorMaximo={this.state.valorMaximo}
@@ -154,10 +159,14 @@ class App extends React.Component {
           updateMinPrice={this.updateMinPrice}
           updateMaxPrice={this.updateMaxPrice}
         />
-        
-        <Produtos 
-        produtos={this.state.naves}
-        clicar = {this.adicionarProdutoCarrinho}
+  
+        <Produtos produtos={this.state.naves}
+        clicar={this.adicionarProdutoCarrinho}
+         valorMinimo={this.state.valorMinimo}
+         valorMaximo={this.state.valorMaximo}
+         textoQuery={this.state.textoQuery}        
+         sortingParameter={this.state.sortingParameter}
+         updateSortingParameter={this.updateSortingParameter}
         />
         
         <Carrinho 
