@@ -11,13 +11,9 @@ import Naboo from "./components/Produtos/img/naboo-royal-starship.png";
 import TantiveIV from "./components/Produtos/img/tantive-iv.png";
 import TFBattleship from "./components/Produtos/img/trade-federation-battleship.jpeg";
 import "./App.css";
-
-const Pagina = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 20px;
-`;
-
+import {
+  Pagina,
+} from "./components/Styles/Styles";
 
 class App extends React.Component {
   state = {

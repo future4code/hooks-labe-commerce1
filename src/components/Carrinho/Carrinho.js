@@ -1,24 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import {
 
-const BlocoCarrinho = styled.div`
-  width: 20%;
-  height: 100%;
-  margin-top: 20px;
-  border: 1px solid black;
-  padding: 0 10px;
-  border-radius: 5px;
-`;
-const Itens = styled.div`
-  display: flex;
-  justify-content:space-between;
-  margin-top: 10px;
-  align-items:center;
-`
-const BotaoRemover = styled.button`
-  border-radius: 5px;
-  padding: 3px;
-`
+  BlocoCarrinho,
+  Itens,
+  BotaoRemover,
+
+  TotalCreditos,
+  H3carrinho,
+} from "../Styles/Styles";
 
 class Carrinho extends React.Component {
   
@@ -34,22 +24,21 @@ class Carrinho extends React.Component {
   render() {
     return (
       <BlocoCarrinho>
-        <h3>CARRINHO: </h3>
+        <H3carrinho>CARRINHO</H3carrinho>
         <div>
         {this.props.produtos.map((produto) => {
             return(
               <Itens  key = {produto.id}>
-                <span>{produto.quantidade}x</span>
-                <span>{produto.nomeProduto}</span>
+                <span>{produto.quantidade}</span>
+                <span>x {produto.nomeProduto}</span>
                  <BotaoRemover onClick = {() => this.props.removeProduto(produto.id)}>Remover</BotaoRemover> 
                </Itens>
             );
         })} 
         </div>
-        <div>
-          <hr/>
-          <p>Valor total: R${this.CalcularValorPagar()}</p>
-        </div>
+        <TotalCreditos>          
+          <p>Total Créditos: {this.CalcularValorPagar()}</p>
+        </TotalCreditos>
       </BlocoCarrinho>
     );
   }

@@ -1,21 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import {
 
-const Borda = styled.div`
-  border: 1px solid black;
-  width: 20%;
-  height: 600px;
-  padding: 0 10px;
-`;
-const Titulo = styled.h3`
-  color: red;
-`;
+  Borda,
+  Titulo,
+
+} from "../Styles/Styles";
 
 class Filtros extends React.Component {
   render() {    
     return (
       <Borda>
         <Titulo>FILTRO</Titulo>
+        
         <div>
           Valor mínimo
           <div>

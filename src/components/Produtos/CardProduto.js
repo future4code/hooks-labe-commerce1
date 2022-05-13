@@ -1,21 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
-const CardProduto = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-`
-const ImagemProduto = styled.img`
-    width: 231px;
-    height: 220px;
-`
-
-const BotaoAdd = styled.button`
-    margin: 10px;
-`
+import { 
+  CardProduto,
+  ImagemProduto,
+  BotaoAdd,
+  Creditos,
+  } from "../Styles/Styles";
 
 class Card extends React.Component{
     render(){
@@ -24,8 +14,7 @@ class Card extends React.Component{
             <CardProduto>
                 <ImagemProduto src={produto.imagem} alt={produto.acessibilidade}/>
                 <h4>{produto.nomeProduto}</h4>
-                <p>{produto.preco} Créditos</p>
-
+                <Creditos>{produto.preco} Créditos</Creditos>
                 <BotaoAdd onClick={() => this.props.clicar(produto.id)}>Adicionar ao carrinho</BotaoAdd>
             </CardProduto>
         )

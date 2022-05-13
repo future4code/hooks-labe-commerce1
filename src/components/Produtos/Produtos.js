@@ -1,26 +1,12 @@
 import React from "react";
-import styled from 'styled-components'
-import CardProduto from './CardProduto'
-
- const Container= styled.div`
-    width: 55%;
-    height: 600px;
-    padding: 0 10px;`
-
-const DisplayProdutos = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 10px;
-    column-gap: 10px;
-`
-const Ordenacao = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-`
-
+import styled from 'styled-components';
+import CardProduto from './CardProduto';
+import {
+    Container,
+    DisplayProdutos,
+    Ordenacao,
+    H2,
+  } from "../Styles/Styles";
 
 class Produtos extends React.Component{
 
@@ -28,8 +14,9 @@ class Produtos extends React.Component{
         return(
             <Container>
                 <Ordenacao>
-                    <h2>PRODUTOS</h2>                    
-                    <div>
+                  
+                    <H2>PRODUTOS</H2>                                                      
+                    <div>                        
                         <label for="sort">Ordenar: </label>
                         <select name="sort"
                         value={this.props.sortingParameter}
@@ -37,8 +24,10 @@ class Produtos extends React.Component{
                             <option value="precoAlto">Maior</option>
                             <option value="precoBaixo">Menor</option>
                         </select>
-                    </div>
+                    </div>  
+                                    
                 </Ordenacao>
+                
                 <DisplayProdutos>
 
                     {/* estou mexendo no filter aqui rsrsrs WF */}
