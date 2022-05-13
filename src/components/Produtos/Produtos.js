@@ -4,8 +4,14 @@ import CardProduto from './CardProduto'
 
  const Container= styled.div`
     width: 55%;
-    height: 600px;
-    padding: 0 10px;`
+    height: 100%;
+    padding: 0 5px;
+    margin: 20px 2px;
+    background-color: rgb(70, 70, 70);
+    border-radius: 10px;
+    color: white;
+    padding-bottom:20px ;
+    `
 
 const DisplayProdutos = styled.div`
     display: grid;
@@ -19,8 +25,13 @@ const Ordenacao = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 0 25px;
 `
-
+const Select = styled.select`
+    margin-left: 5px;
+    padding: 3px 10px;
+    border-radius: 10px;
+`
 
 class Produtos extends React.Component{
 
@@ -31,19 +42,32 @@ class Produtos extends React.Component{
                     <h2>PRODUTOS</h2>                    
                     <div>
                         <label for="sort">Ordenar: </label>
+
+                        <Select name="sort"
+
                         <select name="sort"
+
                         value={this.props.sortingParameter}
                         onChange={this.props.updateSortingParameter}>                        
                             <option value="precoAlto">Maior</option>
                             <option value="precoBaixo">Menor</option>
+
+                        </Select>
+
                         </select>
+
                     </div>
                 </Ordenacao>
+                    <hr/>
                 <DisplayProdutos>
+
+                    {this.props.produtos.sort((obj1,obj2) => {
+
 
                     {/* estou mexendo no filter aqui rsrsrs WF */}
                     {this.props.produtos
                     .sort((obj1,obj2)=>{
+
                         switch (this.props.sortingParameter) {
                             case "precoAlto":
                                 return obj2.preco - obj1.preco                                                     
@@ -68,63 +92,6 @@ class Produtos extends React.Component{
                         )
                     })}
                 </DisplayProdutos>
-
-                {/* <DisplayProdutos>
-                    <CardProduto
-                        produtos = {this.props.produtos[0]}
-                        adicionarProduto = {this.props.adicionarProduto}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[1]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[2]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[3]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[4]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[5]}
-                    /> */}
-
-                    {/* <CardProduto
-                        imagem={MFalcon}
-                        acessibilidade={'Millenium Falcon'}
-                        nomeProduto={'Millenium Falcon'}
-                        preco={165000}
-                    />
-
-                    <CardProduto
-                        imagem={Executor}
-                        acessibilidade={'Executor'}
-                        nomeProduto={'Executor'}
-                        preco={1118000}
-                    />
-
-                    <CardProduto
-                        imagem={Naboo}
-                        acessibilidade={'Naboo Royal Starship'}
-                        nomeProduto={'Naboo Royal Starship'}
-                        preco={67000}
-                    />
-
-                    <CardProduto
-                        imagem={TFBattleship}
-                        acessibilidade={'Trade Federation Battleship'}
-                        nomeProduto={'Trade Federation Battleship'}
-                        preco={658000}
-                    />
-
-                    <CardProduto
-                        imagem={TantiveIV}
-                        acessibilidade={'Tantive IV'}
-                        nomeProduto={'Tantive IV'}
-                        preco={144000}
-                    /> */}
-                {/* </DisplayProdutos> */}
             </Container>
         );
     }
