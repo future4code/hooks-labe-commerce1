@@ -2,13 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const BlocoCarrinho = styled.div`
-  border: 1px solid black;
   width: 20%;
-  height: 600px;
+  height: 100%;
+  margin-top: 20px;
+  border: 1px solid black;
   padding: 0 10px;
+  border-radius: 5px;
 `;
-let valorTotal = 0;
-let mult = 0;
+const Itens = styled.div`
+  display: flex;
+  justify-content:space-between;
+  margin-top: 10px;
+  align-items:center;
+`
+const BotaoRemover = styled.button`
+  border-radius: 5px;
+  padding: 3px;
+`
+
 class Carrinho extends React.Component {
   
   
@@ -19,22 +30,6 @@ class Carrinho extends React.Component {
       total += produto.preco * produto.quantidade
     }
     return total.toFixed(2);
-    // console.log(this.valor)
-    // this.props.produtos.map((produto) =>{
-     
-    //  let valor = produto.quantidade
-    //  let preco = produto.preco
-
-    //  mult = valor * preco
-    //  valorTotal += mult
-    //  console.log(valorTotal)
-    //   return valorTotal
-    // })
-    // return (
-    //   <>
-    //     <p>Valor {valorTotal}</p>
-    //   </>
-    // )
   }
   render() {
     return (
@@ -42,27 +37,19 @@ class Carrinho extends React.Component {
         <h3>CARRINHO: </h3>
         <div>
         {this.props.produtos.map((produto) => {
-          
-            // valorTotal += this.props.produtos.preco * this.props.produtos.quantidade
             return(
-              <div  key = {produto.id}>
-                <span>{produto.quantidade}</span>
+              <Itens  key = {produto.id}>
+                <span>{produto.quantidade}x</span>
                 <span>{produto.nomeProduto}</span>
-                 <button onClick = {() => this.props.removeProduto(produto.id)}>Remover</button> 
-               </div>
+                 <BotaoRemover onClick = {() => this.props.removeProduto(produto.id)}>Remover</BotaoRemover> 
+               </Itens>
             );
-          
-        
         })} 
         </div>
         <div>
           <hr/>
-          <p>Valor total: {this.CalcularValorPagar()}</p>
-        
+          <p>Valor total: R${this.CalcularValorPagar()}</p>
         </div>
-        {/* <div>{this.mostrarProduto()}</div>
-        <div>{this.CalcularValorPagar()}</div>
-        <button onClick = {this.props.adicionarProduto}>Adicionar</button> */}
       </BlocoCarrinho>
     );
   }
