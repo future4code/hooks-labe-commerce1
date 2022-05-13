@@ -26,7 +26,7 @@ class Card extends React.Component{
                 <h4>{porcaria.nomeProduto}</h4>
                 <p>{porcaria.preco} Créditos</p>
                 {console.log(porcaria.id)}
-                <BotaoAdd onClick={() => this.props.clicar(porcaria.id)}>Adicionar ao carrinho</BotaoAdd>
+                {/* <BotaoAdd onClick={() => this.props.clicar(porcaria.id)}>Adicionar ao carrinho</BotaoAdd> */}
             </CardProduto>
         )
     }

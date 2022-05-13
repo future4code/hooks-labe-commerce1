@@ -35,9 +35,12 @@ class Produtos extends React.Component{
             <Container>
                 <Ordenacao>
                     <h2>PRODUTOS</h2>
+                    {this.props.sortingParameter}
                     <div>
-                        <label>Ordenar: </label>
-                        <select>
+                        <label for="sort">Ordenar: </label>
+                        <select name="sort"
+                        value={this.props.sortingParameter}
+                        onChange={this.props.updateSortingParameter}>                        
                             <option value="maior">Maior</option>
                             <option value="menor">Menor</option>
                         </select>
@@ -47,8 +50,25 @@ class Produtos extends React.Component{
 
                     {/* estou mexendo no filter aqui rsrsrs WF */}
                     {this.props.produtos
-                    // .filter(obj =>{                       
-                    // })
+                    .sort((startObj,nexObj)=>{
+                        switch (this.props.sortingParameter) {
+                            case "maior":
+                                return startObj.preco - nexObj.preco                                                       
+                            case "menor":
+                                return nexObj.preco - startObj.preco
+                                default:
+                                    break;
+                        }                       
+                    })
+                    .filter(obj =>{  
+                        return obj.nomeProduto.toLowerCase().includes(this.props.textoQuery.toLowerCase())                              
+                    })
+                    .filter(val=>{
+                        return this.props.valorMinimo === "" || val.preco >= this.props.valorMinimo
+                    })
+                    .filter(val=>{
+                        return this.props.valorMaximo === "" || val.preco <= this.props.valorMaximo
+                    })
                     .map((produto) => {
                         return(
                             <div key={produto.id}>

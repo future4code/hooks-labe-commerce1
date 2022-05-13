@@ -33,7 +33,7 @@ class Carrinho extends React.Component {
     return (
       <BlocoCarrinho>
         <h3>CARRINHO: </h3>
-        {this.props.produtos.map((produto) => {
+        {/* {this.props.produtos.map((produto) => {
           return(
             <div  key = {produto.id}>
               <span>{produto.quantidade}</span>
@@ -41,7 +41,7 @@ class Carrinho extends React.Component {
                <button onClick = {() => this.props.removeProduto(produto.id)}>Remover</button> 
              </div>
           );
-        })} 
+        })}  */}
         {/* <div>{this.mostrarProduto()}</div>
         <div>{this.CalcularValorPagar()}</div>
         <button onClick = {this.props.adicionarProduto}>Adicionar</button> */}
