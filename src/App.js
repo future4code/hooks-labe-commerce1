@@ -26,7 +26,7 @@ class App extends React.Component {
     valorMinimo: "",
     valorMaximo: "",
     textoQuery: "",
-    sortingParameter:"maior",
+    sortingParameter:"precoAlto",
     naves: [
       {
         id: 1,
@@ -98,7 +98,7 @@ class App extends React.Component {
   };
   
   updateSortingParameter = (event) => {
-    this.setState({ preco: event.target.value });
+    this.setState({ sortingParameter: event.target.value });
   };
  
   adicionarProdutoCarrinho = (idProduto) => {
@@ -170,8 +170,7 @@ class App extends React.Component {
         clicar={this.adicionarProdutoCarrinho}
          valorMinimo={this.state.valorMinimo}
          valorMaximo={this.state.valorMaximo}
-         textoQuery={this.state.textoQuery}
-         updateQuery={this.updateQuery}
+         textoQuery={this.state.textoQuery}        
          sortingParameter={this.state.sortingParameter}
          updateSortingParameter={this.updateSortingParameter}
         />

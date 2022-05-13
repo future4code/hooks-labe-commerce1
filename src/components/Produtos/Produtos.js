@@ -35,8 +35,8 @@ class Produtos extends React.Component{
                         <select name="sort"
                         value={this.props.sortingParameter}
                         onChange={this.props.updateSortingParameter}>                        
-                            <option value="maior">Maior</option>
-                            <option value="menor">Menor</option>
+                            <option value="precoAlto">Maior</option>
+                            <option value="precoBaixo">Menor</option>
                         </select>
                     </div>
                 </Ordenacao>
@@ -44,14 +44,12 @@ class Produtos extends React.Component{
 
                     {/* estou mexendo no filter aqui rsrsrs WF */}
                     {this.props.produtos
-                    .sort((startObj,nexObj)=>{
+                    .sort((obj1,obj2)=>{
                         switch (this.props.sortingParameter) {
-                            case "maior":
-                                return startObj.preco - nexObj.preco                                                       
-                            case "menor":
-                                return nexObj.preco - startObj.preco
-                                default:
-                                    break;
+                            case "precoAlto":
+                                return obj2.preco - obj1.preco                                                     
+                            case "precoBaixo":
+                                return obj1.preco - obj2.preco            
                         }                       
                     })
                     .filter(obj =>{  
