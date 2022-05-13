@@ -1,55 +1,72 @@
 import React from "react";
 import styled from "styled-components";
 
-const Borda = styled.div`
+const Pagina = styled.div`
+  margin: 2% 1%;
   border: 1px solid black;
-  width: 20%;
-  height: 600px;
-  padding: 0 10px;
+  width: 15vw;
+  height: 50vh;
+  padding: 0 1%;
+  background-color: rgb(70, 70, 70);
+  box-shadow: 1px 1px 2px gray;
+  border: 1px solid gray;
+  border-radius: 10px;
 `;
-const Titulo = styled.h3`
-  color: red;
+const Titulo = styled.h2`
+  text-align: center;
+  color: white;
 `;
+const TipoFiltro = styled.div`
+  color: white;
+  margin-top: 10%;
+`
+const Input = styled.input`
+  padding: 3px;
+  border-radius: 5px;
+`
 
 class Filtros extends React.Component {
   render() {    
     return (
-      <Borda>
-        <Titulo>FILTRO</Titulo>
-        <div>
+      <Pagina>
+        <Titulo>FILTROS</Titulo>
+
+        <TipoFiltro>
           Valor mínimo
           <div>
-            <input
-              placeholder="67000"
+            <Input
+              placeholder="R$: 67000,00"
               type="number"
               onChange={this.props.updateMinPrice}
               value={this.props.valorMinimo}
-            ></input>
+            ></Input>
           </div>
-        </div>
-        <div>
+        </TipoFiltro>
+
+        <TipoFiltro>
           Valor máximo
           <div>
-            <input
-              placeholder="1370000"
+            <Input
+              placeholder="R$: 137000,00"
               type="number"
               onChange={this.props.updateMaxPrice}
               value={this.props.valorMaximo}
-            ></input>
+            ></Input>
           </div>
-        </div>
-        <div>
+        </TipoFiltro>
+
+        <TipoFiltro>
           Busca por nome
           <div>
-            <input
+            <Input
               placeholder="Death Star"
               type="text"
               onChange={this.props.updateQuery}
               value={this.props.textQuery}
-              ></input>                        
+              ></Input>                        
           </div>
-        </div>        
-      </Borda>
+        </TipoFiltro>        
+      </Pagina>
       
     );
   }

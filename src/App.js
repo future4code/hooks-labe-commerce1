@@ -12,9 +12,12 @@ import TFBattleship from "./components/Produtos/img/trade-federation-battleship.
 import "./App.css";
 
 const Pagina = styled.div`
+  margin: 0;
+  padding : 0;
+  background: linear-gradient(304deg, rgba(1,0,24,1) 0%, rgba(0,0,0,1) 100%, rgba(0,249,255,1) 100%);
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 15px 20px;
 `;
 
 
@@ -31,7 +34,7 @@ class App extends React.Component {
         imagem: DeathStar,
         acessibilidade: "Death Star",
         nomeProduto: "Death Star",
-        preco: 30,
+        preco: 10856.15,
         quantidade: 0,
         descrição: "Melhor nave"
       },
@@ -40,7 +43,7 @@ class App extends React.Component {
         imagem: MFalcon,
         acessibilidade: "Millenium Falcon",
         nomeProduto: "Millenium Falcon",
-        preco: 20,
+        preco: 8569.85,
         quantidade: 0,
         descrição: "Melhor nave 2"
       },
@@ -49,7 +52,7 @@ class App extends React.Component {
         imagem: Executor,
         acessibilidade: "Executor",
         nomeProduto: "Executor",
-        preco: 10,
+        preco: 12968.35,
         quantidade: 0,
         descrição: "Nave mais rápida"
       },
@@ -58,7 +61,7 @@ class App extends React.Component {
         imagem: Naboo,
         acessibilidade: "Naboo Royal Starship",
         nomeProduto: "Naboo Royal Starship",
-        preco: 67000,
+        preco: 67780.73,
         quantidade: 0,
         descrição: "Nave mais rápida 2"
       },
@@ -67,7 +70,7 @@ class App extends React.Component {
         imagem: TFBattleship,
         acessibilidade: "Trade Federation Battleship",
         nomeProduto: "Trade Federation Battleship",
-        preco: 658000,
+        preco: 65346.23,
         quantidade: 0,
         descrição: "Muito militar"
       },
@@ -76,7 +79,7 @@ class App extends React.Component {
         imagem: TantiveIV,
         acessibilidade: "Tantive IV",
         nomeProduto: "Tantive IV",
-        preco: 144000,
+        preco: 148571.69,
         quantidade: 0,
         descrição: "Velocidade incrivel"
       }]

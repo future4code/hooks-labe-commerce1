@@ -4,15 +4,17 @@ import styled from "styled-components";
 const BlocoCarrinho = styled.div`
   width: 20%;
   height: 100%;
-  margin-top: 20px;
+  margin: 2% 1%;
   border: 1px solid black;
   padding: 0 10px;
   border-radius: 5px;
+  background-color: rgb(70, 70, 70);
+  color: white;
 `;
 const Itens = styled.div`
   display: flex;
   justify-content:space-between;
-  margin-top: 10px;
+  margin-top: 5%;
   align-items:center;
 `
 const BotaoRemover = styled.button`

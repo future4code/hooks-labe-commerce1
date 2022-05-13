@@ -4,8 +4,14 @@ import CardProduto from './CardProduto'
 
  const Container= styled.div`
     width: 55%;
-    height: 600px;
-    padding: 0 10px;`
+    height: 100%;
+    padding: 0 5px;
+    margin: 20px 2px;
+    background-color: rgb(70, 70, 70);
+    border-radius: 10px;
+    color: white;
+    padding-bottom:20px ;
+    `
 
 const DisplayProdutos = styled.div`
     display: grid;
@@ -19,6 +25,7 @@ const Ordenacao = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 0 25px;
 `
 
 class Produtos extends React.Component{
@@ -38,6 +45,7 @@ class Produtos extends React.Component{
                         </select>
                     </div>
                 </Ordenacao>
+                    <hr/>
                 <DisplayProdutos>
                     {this.props.produtos.sort((obj1,obj2) => {
                         switch (this.props.sortingParameter) {
