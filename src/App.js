@@ -84,10 +84,6 @@ class App extends React.Component {
         descrição: "Velocidade incrivel"
 
       }]
-
-      },
-    ]
-
   };
 
   updateMinPrice = (event) => {
@@ -156,10 +152,6 @@ class App extends React.Component {
   render() {
     return (
       <Pagina>
-
-
-      
-
         <Filtros
           valorMinimo={this.state.valorMinimo}
           valorMaximo={this.state.valorMaximo}
