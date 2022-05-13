@@ -1,12 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
 import CardProduto from './CardProduto'
-import DeathStar from './img/death-star.jpg'
-import Executor from './img/executor.jpg'
-import MFalcon from './img/millenium-falcon.jpg'
-import Naboo from './img/naboo-royal-starship.png'
-import TantiveIV from './img/tantive-iv.png'
-import TFBattleship from './img/trade-federation-battleship.jpeg'
 
  const Container= styled.div`
     width: 55%;
@@ -53,7 +47,6 @@ class Produtos extends React.Component{
                         return(
                             <div key={produto.id}>
                                 <CardProduto produtos = {produto} clicar = {this.props.clicar}/>
-                                {console.log(produto)}
                             </div>
                         )
                     })}
