@@ -27,21 +27,11 @@ class Card extends React.Component{
         const produto = this.props.produtos;
         return(
             <CardProduto>
-
-              
-                <h4>{produto.nomeProduto}</h4>
-                <ImagemProduto src={produto.imagem} alt={produto.acessibilidade}/>
-                <p>{produto.preco} Créditos</p>
-
-                <BotaoAdd onClick={() => this.props.clicar(produto.id)}>Adicionar ao carrinho</BotaoAdd>
-            
-
                 <ImagemProduto src={produto.imagem} alt={produto.acessibilidade}/>
                 <h4>{produto.nomeProduto}</h4>
                 <p>{produto.preco} Créditos</p>
 
                 <BotaoAdd onClick={() => this.props.clicar(produto.id)}>Adicionar ao carrinho</BotaoAdd>
-
             </CardProduto>
         )
     }
