@@ -42,17 +42,32 @@ class Produtos extends React.Component{
                     <h2>PRODUTOS</h2>                    
                     <div>
                         <label for="sort">Ordenar: </label>
+
                         <Select name="sort"
+
+                        <select name="sort"
+
                         value={this.props.sortingParameter}
                         onChange={this.props.updateSortingParameter}>                        
                             <option value="precoAlto">Maior</option>
                             <option value="precoBaixo">Menor</option>
+
                         </Select>
+
+                        </select>
+
                     </div>
                 </Ordenacao>
                     <hr/>
                 <DisplayProdutos>
+
                     {this.props.produtos.sort((obj1,obj2) => {
+
+
+                    {/* estou mexendo no filter aqui rsrsrs WF */}
+                    {this.props.produtos
+                    .sort((obj1,obj2)=>{
+
                         switch (this.props.sortingParameter) {
                             case "precoAlto":
                                 return obj2.preco - obj1.preco                                                     
