@@ -151,11 +151,6 @@ class App extends React.Component {
   render() {
     return (
       <Pagina>
-        <div>{this.state.valorMinimo}</div>
-        <div></div>
-        <div>{this.state.valorMaximo}</div>
-        <div></div>
-        <div>{this.state.textoQuery}</div> 
       
         <Filtros
           valorMinimo={this.state.valorMinimo}

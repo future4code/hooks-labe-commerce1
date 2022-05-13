@@ -28,8 +28,7 @@ class Produtos extends React.Component{
         return(
             <Container>
                 <Ordenacao>
-                    <h2>PRODUTOS</h2>
-                    {this.props.sortingParameter}
+                    <h2>PRODUTOS</h2>                    
                     <div>
                         <label for="sort">Ordenar: </label>
                         <select name="sort"
