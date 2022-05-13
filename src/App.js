@@ -26,7 +26,6 @@ class App extends React.Component {
     valorMinimo: "",
     valorMaximo: "",
     textoQuery: "",
-    itemCarrinho: [],
     sortingParameter:"maior",
     naves: [
       {
@@ -34,7 +33,7 @@ class App extends React.Component {
         imagem: DeathStar,
         acessibilidade: "Death Star",
         nomeProduto: "Death Star",
-        preco: 1370000,
+        preco: 30,
         quantidade: 0,
         descrição: "Melhor nave"
       },
@@ -43,7 +42,7 @@ class App extends React.Component {
         imagem: MFalcon,
         acessibilidade: "Millenium Falcon",
         nomeProduto: "Millenium Falcon",
-        preco: 165000,
+        preco: 20,
         quantidade: 0,
         descrição: "Melhor nave 2"
       },
@@ -52,7 +51,7 @@ class App extends React.Component {
         imagem: Executor,
         acessibilidade: "Executor",
         nomeProduto: "Executor",
-        preco: 1118000,
+        preco: 10,
         quantidade: 0,
         descrição: "Nave mais rápida"
       },
@@ -62,7 +61,7 @@ class App extends React.Component {
         acessibilidade: "Naboo Royal Starship",
         nomeProduto: "Naboo Royal Starship",
         preco: 67000,
-        quantidade: 2,
+        quantidade: 0,
         descrição: "Nave mais rápida 2"
       },
       {
@@ -88,6 +87,7 @@ class App extends React.Component {
 
   updateMinPrice = (event) => {
     this.setState({ valorMinimo: event.target.value });
+    
   };
   updateMaxPrice = (event) => {
     this.setState({ valorMaximo: event.target.value });
@@ -96,7 +96,7 @@ class App extends React.Component {
   updateQuery = (event) => {
     this.setState({ textoQuery: event.target.value });
   };
-
+  
   updateSortingParameter = (event) => {
     this.setState({ preco: event.target.value });
   };
@@ -130,10 +130,12 @@ class App extends React.Component {
       this.setState({ carrinho: itemCarrinho });
     }
   };
+  
   removerProduto = (idProduto) => {
-    const novoItemCarrinho = this.state.carrinho
-      .map((produto) => {
+    console.log(idProduto)
+    const novoItemCarrinho = this.state.carrinho.map((produto) => {
         if (produto.id === idProduto) {
+          console.log(produto.id)
           return {
             ...produto,
             quantidade: produto.quantidade - 1,
@@ -153,7 +155,8 @@ class App extends React.Component {
         <div></div>
         <div>{this.state.valorMaximo}</div>
         <div></div>
-        <div>{this.state.textoQuery}</div>        
+        <div>{this.state.textoQuery}</div> 
+      
         <Filtros
           valorMinimo={this.state.valorMinimo}
           valorMaximo={this.state.valorMaximo}
@@ -162,6 +165,7 @@ class App extends React.Component {
           updateMinPrice={this.updateMinPrice}
           updateMaxPrice={this.updateMaxPrice}
         />
+  
         <Produtos produtos={this.state.naves}
         clicar={this.adicionarProdutoCarrinho}
          valorMinimo={this.state.valorMinimo}
@@ -172,13 +176,9 @@ class App extends React.Component {
          updateSortingParameter={this.updateSortingParameter}
         />
         
-        <Carrinho produtos={this.state.naves} 
-           valorMinimo={this.state.valorMinimo}
-           valorMaximo={this.state.valorMaximo}
-           textoQuery={this.state.textoQuery}
-           updateQuery={this.updateQuery}
-           updateMinPrice={this.updateMinPrice}
-           updateMaxPrice={this.updateMaxPrice}           
+        <Carrinho 
+           produtos={this.state.carrinho} 
+           removeProduto = {this.removerProduto}
            />
      
       </Pagina>
