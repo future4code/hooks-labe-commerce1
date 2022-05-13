@@ -144,7 +144,8 @@ class App extends React.Component {
         <div></div>
         <div>{this.state.valorMaximo}</div>
         <div></div>
-        <div>{this.state.textoQuery}</div>        
+        <div>{this.state.textoQuery}</div>  
+
         <Filtros
           valorMinimo={this.state.valorMinimo}
           valorMaximo={this.state.valorMaximo}
@@ -153,6 +154,7 @@ class App extends React.Component {
           updateMinPrice={this.updateMinPrice}
           updateMaxPrice={this.updateMaxPrice}
         />
+        
         <Produtos 
         produtos={this.state.naves}
         clicar = {this.adicionarProdutoCarrinho}
