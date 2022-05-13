@@ -27,6 +27,11 @@ const Ordenacao = styled.div`
     align-items: center;
     padding: 0 25px;
 `
+const Select = styled.select`
+    margin-left: 5px;
+    padding: 3px 10px;
+    border-radius: 10px;
+`
 
 class Produtos extends React.Component{
 
@@ -37,12 +42,12 @@ class Produtos extends React.Component{
                     <h2>PRODUTOS</h2>                    
                     <div>
                         <label for="sort">Ordenar: </label>
-                        <select name="sort"
+                        <Select name="sort"
                         value={this.props.sortingParameter}
                         onChange={this.props.updateSortingParameter}>                        
                             <option value="precoAlto">Maior</option>
                             <option value="precoBaixo">Menor</option>
-                        </select>
+                        </Select>
                     </div>
                 </Ordenacao>
                     <hr/>
