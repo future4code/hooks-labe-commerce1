@@ -21,16 +21,15 @@ const BotaoRemover = styled.button`
 `
 
 class Carrinho extends React.Component {
-  
-  
   CalcularValorPagar = () => {
     
     let total = 0
-    for(let produto of this.props.produtos){
-      total += produto.preco * produto.quantidade
+    for(let item of this.props.produtos){
+      total += item.preco * item.quantidade
     }
     return total.toFixed(2);
   }
+
   render() {
     return (
       <BlocoCarrinho>
@@ -39,8 +38,8 @@ class Carrinho extends React.Component {
         {this.props.produtos.map((produto) => {
             return(
               <Itens  key = {produto.id}>
-                <span>{produto.quantidade}x</span>
-                <span>{produto.nomeProduto}</span>
+                <span>{produto.quantidade}x </span>
+                <span>{produto.nomeProduto} </span>
                  <BotaoRemover onClick = {() => this.props.removeProduto(produto.id)}>Remover</BotaoRemover> 
                </Itens>
             );

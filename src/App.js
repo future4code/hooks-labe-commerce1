@@ -2,7 +2,6 @@ import React from "react";
 import Filtros from "./components/Filtros/Filtros";
 import Produtos from "./components/Produtos/Produtos";
 import Carrinho from "./components/Carrinho/Carrinho";
-// import CardProduto from "./components/Produtos/CardProduto";
 import styled from "styled-components";
 import DeathStar from "./components/Produtos/img/death-star.jpg";
 import Executor from "./components/Produtos/img/executor.jpg";
@@ -22,7 +21,6 @@ const Pagina = styled.div`
 class App extends React.Component {
   state = {
     carrinho: [],
-    // quantidade: 0,
     valorMinimo: "",
     valorMaximo: "",
     textoQuery: "",
@@ -81,14 +79,13 @@ class App extends React.Component {
         preco: 144000,
         quantidade: 0,
         descrição: "Velocidade incrivel"
-      },
-    ]
+      }]
   };
 
   updateMinPrice = (event) => {
     this.setState({ valorMinimo: event.target.value });
-    
   };
+
   updateMaxPrice = (event) => {
     this.setState({ valorMaximo: event.target.value });
   };
@@ -120,11 +117,11 @@ class App extends React.Component {
 
       this.setState({ carrinho: itemCarrinho });
     } else {
-      const produtoToAdd = this.state.naves.find((produto) => idProduto === produto.id);
+      const adicionarProduto = this.state.naves.find((produto) => idProduto === produto.id);
 
       const itemCarrinho = [
         ...this.state.carrinho,
-        { ...produtoToAdd, quantidade: 1 },
+        { ...adicionarProduto, quantidade: 1 },
       ];
 
       this.setState({ carrinho: itemCarrinho });
@@ -132,8 +129,8 @@ class App extends React.Component {
   };
   
   removerProduto = (idProduto) => {
-    console.log(idProduto)
-    const novoItemCarrinho = this.state.carrinho.map((produto) => {
+
+    const ItemCarrinho = this.state.carrinho.map((produto) => {
         if (produto.id === idProduto) {
           console.log(produto.id)
           return {
@@ -145,7 +142,7 @@ class App extends React.Component {
       })
       .filter((produto) => produto.quantidade > 0);
 
-    this.setState({ carrinho: novoItemCarrinho });
+    this.setState({ carrinho: ItemCarrinho });
   };
 
   render() {

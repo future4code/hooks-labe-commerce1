@@ -21,7 +21,6 @@ const Ordenacao = styled.div`
     align-items: center;
 `
 
-
 class Produtos extends React.Component{
 
     render(){        
@@ -40,10 +39,7 @@ class Produtos extends React.Component{
                     </div>
                 </Ordenacao>
                 <DisplayProdutos>
-
-                    {/* estou mexendo no filter aqui rsrsrs WF */}
-                    {this.props.produtos
-                    .sort((obj1,obj2)=>{
+                    {this.props.produtos.sort((obj1,obj2) => {
                         switch (this.props.sortingParameter) {
                             case "precoAlto":
                                 return obj2.preco - obj1.preco                                                     
@@ -68,63 +64,6 @@ class Produtos extends React.Component{
                         )
                     })}
                 </DisplayProdutos>
-
-                {/* <DisplayProdutos>
-                    <CardProduto
-                        produtos = {this.props.produtos[0]}
-                        adicionarProduto = {this.props.adicionarProduto}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[1]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[2]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[3]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[4]}
-                    />
-                    <CardProduto
-                        produtos = {this.props.produtos[5]}
-                    /> */}
-
-                    {/* <CardProduto
-                        imagem={MFalcon}
-                        acessibilidade={'Millenium Falcon'}
-                        nomeProduto={'Millenium Falcon'}
-                        preco={165000}
-                    />
-
-                    <CardProduto
-                        imagem={Executor}
-                        acessibilidade={'Executor'}
-                        nomeProduto={'Executor'}
-                        preco={1118000}
-                    />
-
-                    <CardProduto
-                        imagem={Naboo}
-                        acessibilidade={'Naboo Royal Starship'}
-                        nomeProduto={'Naboo Royal Starship'}
-                        preco={67000}
-                    />
-
-                    <CardProduto
-                        imagem={TFBattleship}
-                        acessibilidade={'Trade Federation Battleship'}
-                        nomeProduto={'Trade Federation Battleship'}
-                        preco={658000}
-                    />
-
-                    <CardProduto
-                        imagem={TantiveIV}
-                        acessibilidade={'Tantive IV'}
-                        nomeProduto={'Tantive IV'}
-                        preco={144000}
-                    /> */}
-                {/* </DisplayProdutos> */}
             </Container>
         );
     }
