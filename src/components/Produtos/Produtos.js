@@ -43,28 +43,20 @@ class Produtos extends React.Component{
                     <div>
                         <label for="sort">Ordenar: </label>
 
-                        <Select name="sort"
-
-                        <select name="sort"
+                        <Select name="sort"                        
 
                         value={this.props.sortingParameter}
                         onChange={this.props.updateSortingParameter}>                        
                             <option value="precoAlto">Maior</option>
                             <option value="precoBaixo">Menor</option>
 
-                        </Select>
-
-                        </select>
+                        </Select>                        
 
                     </div>
                 </Ordenacao>
                     <hr/>
                 <DisplayProdutos>
-
-                    {this.props.produtos.sort((obj1,obj2) => {
-
-
-                    {/* estou mexendo no filter aqui rsrsrs WF */}
+                                      
                     {this.props.produtos
                     .sort((obj1,obj2)=>{
 

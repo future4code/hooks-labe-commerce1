@@ -83,10 +83,8 @@ class App extends React.Component {
         quantidade: 0,
         descrição: "Velocidade incrivel"
 
-      }]
-
-      },
-    ]
+      }]    
+    
 
   };
 

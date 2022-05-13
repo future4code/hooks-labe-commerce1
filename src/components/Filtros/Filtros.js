@@ -19,14 +19,14 @@ const Titulo = styled.h2`
 const TipoFiltro = styled.div`
   color: white;
   margin-top: 10%;
-`
+`;
 const Input = styled.input`
   padding: 3px;
   border-radius: 5px;
-`
+`;
 
 class Filtros extends React.Component {
-  render() {    
+  render() {
     return (
       <Pagina>
         <Titulo>FILTROS</Titulo>
@@ -34,13 +34,8 @@ class Filtros extends React.Component {
         <TipoFiltro>
           Valor mínimo
           <div>
-
             <Input
               placeholder="R$: 67000,00"
-
-            <input
-              placeholder="67000"
-
               type="number"
               onChange={this.props.updateMinPrice}
               value={this.props.valorMinimo}
@@ -51,13 +46,8 @@ class Filtros extends React.Component {
         <TipoFiltro>
           Valor máximo
           <div>
-
             <Input
               placeholder="R$: 137000,00"
-
-            <input
-              placeholder="1370000"
-
               type="number"
               onChange={this.props.updateMaxPrice}
               value={this.props.valorMaximo}
@@ -68,20 +58,15 @@ class Filtros extends React.Component {
         <TipoFiltro>
           Busca por nome
           <div>
-
             <Input
-
-            <input
-
               placeholder="Death Star"
               type="text"
               onChange={this.props.updateQuery}
               value={this.props.textQuery}
-              ></Input>                        
+            ></Input>
           </div>
-        </TipoFiltro>        
+        </TipoFiltro>
       </Pagina>
-      
     );
   }
 }
