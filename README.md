@@ -12,5 +12,4 @@ A proposta foi de criar empresa fictícia, onde vende-se naves espaciais. As nav
 
 
 ```Sejam bem vindos ao Labe-commerce```
-link surge: impolite-wall.surge.sh
-link surge atualizado: homely-celery.surge.sh
+link surge: homely-celery.surge.sh
