@@ -1,1 +1,15 @@
-Sejam bem vindos ao Labe-commerce, esse repositório contém um esqueleto de app React e um .gitignore.
+# Labe-commerce1
+## 🚀🚀 Naves espaciais 🚀🚀
+
+## Resumo
+A proposta foi de criar empresa fictícia, onde vende-se naves espaciais. As naves foram escolhidas com o tema de Star Wars, escolhemos esse tema pois abrange várias idades e possui uma grande demanda no mercado. 
+
+### 📋  Requisitos
+
+- Fornecer diferentes design de naves
+- Paleta de cores que se baseiam nos filmes
+- Um site intuitivo e de facil acesso
+
+
+```Sejam bem vindos ao Labe-commerce```
+link surge: homely-celery.surge.sh
